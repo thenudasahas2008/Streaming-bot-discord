@@ -29,7 +29,7 @@ const commands = [
 
     new SlashCommandBuilder()
         .setName('timer')
-        .setDescription('5,000+ පැය timer එක බලන්න.'),
+        .setDescription('Bot එකේ 24/7 live streaming timer එක බලන්න.'),
 
     new SlashCommandBuilder()
         .setName('status')
@@ -37,12 +37,12 @@ const commands = [
 
     new SlashCommandBuilder()
         .setName('reset')
-        .setDescription('Global timer එක 5,000+ පැය අගයකින් නැවත පටන් ගන්න.')
+        .setDescription('Global streaming timer එක අලුත් අගයකින් නැවත පටන් ගන්න.')
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
         .addIntegerOption(option => option
             .setName('hours')
-            .setDescription('අලුත් ආරම්භක පැය ගණන (අවම 5,000; default 5,000).')
-            .setMinValue(5000)
+            .setDescription('අලුත් ආරම්භක පැය ගණන (Default: 0).')
+            .setMinValue(0)
             .setMaxValue(10_000_000)
             .setRequired(false))
 ].map(command => command.toJSON());

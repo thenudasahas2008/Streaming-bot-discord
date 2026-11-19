@@ -34,7 +34,7 @@ function readOptionalJsonObject(name, fallback = {}) {
 }
 
 const dataDir = path.resolve(process.env.DATA_DIR || './data');
-const baseElapsedHours = readInteger('BASE_ELAPSED_HOURS', 5000, 5000);
+const baseElapsedHours = readInteger('BASE_ELAPSED_HOURS', 0, 0);
 const presenceIntervalMs = readInteger(
     'PRESENCE_UPDATE_INTERVAL_MS',
     60_000,

@@ -1,205 +1,212 @@
-<!-- ========================================================================= -->
-<!-- ZYRO STREAMING BOT — HIGH-AVAILABILITY 24/7 DISCORD AUDIO DAEMON          -->
-<!-- ========================================================================= -->
-
 <div align="center">
-  <!-- Dynamic Banner -->
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=220&section=header&text=ZYRO%20STREAMING%20BOT&fontSize=42&fontColor=E6FCFF&fontAlignY=38&desc=HIGH-AVAILABILITY%2024%2F7%20DISCORD%20AUDIO%20%26%20PRESENCE%20DAEMON&descSize=13&descAlignY=60&color=0:020617,35:0F172A,70:0284C7,100:22D3EE" width="100%" alt="ZYRO Streaming Bot Banner" />
 
-  <p align="center">
-    <strong>Enterprise-grade, containerized Discord 24/7 voice streaming daemon with automatic reconnection, dynamic rich presence, and Vercel Blob cloud persistence.</strong>
-  </p>
+<img src="https://capsule-render.vercel.app/api?type=waving&height=220&section=header&text=ZYRO%20STREAMING%20BOT&fontSize=42&fontColor=E6FCFF&fontAlignY=38&desc=24/7%20CONTINUOUS%20STREAMING%20PRESENCE%20%E2%80%A2%20VOICE%20STATION%20DAEMON&descSize=13&descAlignY=60&color=0:020617,35:0F172A,70:0284C7,100:22D3EE" width="100%" alt="ZYRO Streaming Bot Banner" />
 
-  <p align="center">
-    <img src="https://img.shields.io/badge/Node.js-%3E%3D24.0.0-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" />
-    <img src="https://img.shields.io/badge/discord.js-v14.27.0-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord.js" />
-    <img src="https://img.shields.io/badge/Vercel-Daemon%20Ready-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel" />
-    <img src="https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
-    <img src="https://img.shields.io/badge/Status-24%2F7%20Active-10B981?style=for-the-badge&logo=statuspage&logoColor=white" alt="Status" />
-  </p>
+[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18.0.0-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Discord.js](https://img.shields.io/badge/discord.js-v14.27.0-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.js.org/)
+[![Render](https://img.shields.io/badge/Render-24%2F7_Ready-46E3B7?style=for-the-badge&logo=render&logoColor=black)](https://render.com)
+[![UptimeRobot](https://img.shields.io/badge/UptimeRobot-KeepAlive_200_OK-1FC77B?style=for-the-badge&logo=uptimerobot&logoColor=white)](https://uptimerobot.com)
+[![Status](https://img.shields.io/badge/Status-24%2F7%20Non--Stop-10B981?style=for-the-badge&logo=statuspage&logoColor=white)](#-247-render-free-cloud-hosting)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 
-  <p align="center">
-    <a href="#-key-features">Features</a> •
-    <a href="#-slash-commands-suite">Commands</a> •
-    <a href="#-architecture--flow">Architecture</a> •
-    <a href="#-environment-variables">Configuration</a> •
-    <a href="#-deployment-guide">Deployment</a> •
-    <a href="zyro-vercel-daemon/zyro-vercel-daemon/README_SI.md">සිංහල මාර්ගෝපදේශය</a>
-  </p>
+<p align="center">
+  <b>A resilient 24/7 Discord Streaming Presence and Persistent Voice Channel bot designed for non-stop uptime. Displays live progressive streaming timers starting from 0h and counting up infinitely with built-in Render HTTP health checks.</b>
+</p>
+
+[✨ Sinhala Guide (සිංහල මාර්ගෝපදේශය)](README_SI.md) • [Features](#-key-features) • [Unlimited Timer](#-unlimited-streaming-timer) • [Render 24/7 Hosting](#-247-render-free-cloud-hosting) • [Quick Start](#-quick-start) • [Commands](#-slash-commands)
+
+---
+
 </div>
 
----
+## 📖 Overview
 
-## ⚡ Overview
+**ZYRO Streaming Bot** is a high-availability, headless Node.js daemon that keeps your Discord bot permanently in **"Streaming" status** on its Discord profile 24 hours a day, 7 days a week, while maintaining persistent voice channel presence.
 
-**ZYRO Streaming Bot** is an ultra-reliable, high-availability Node.js service engineered to keep your Discord bot pinned 24/7 in a selected voice channel while maintaining a synchronized Twitch / YouTube streaming status and continuous uptime counter.
-
-Engineered natively for **Vercel Daemons (Docker Worker architecture)** and multi-platform deployments, it integrates **Vercel Private Blob storage** with continuous **OIDC token rotation** to ensure server configurations and uptime timers persist indefinitely across container recycles.
+Unlike bots with arbitrary restrictions or resetting timers, **ZYRO** features an **unlimited continuous timer** that starts from `0h 00m` (or custom configured starting hours) and increments indefinitely. It includes a native **built-in HTTP Keep-Alive server** (`200 OK`) so you can host it 100% free on **Render** with **UptimeRobot** without the bot ever shutting down!
 
 ---
 
-## 🚀 Key Features
+## ⏱️ Unlimited Streaming Timer
 
-- 🔊 **24/7 Pinned Voice Channel:** Seamlessly connects to specified guild voice channels with persistent keep-alive and exponential-backoff auto-reconnect logic.
-- 📺 **Dynamic Streaming Activity:** Sets rich Discord streaming presence linking to any Twitch or YouTube broadcast URL.
-- 🗄️ **Zero-Loss State Persistence:** Synchronizes timer milestones (5,000+ hours) and per-guild configuration via Vercel Private Blob with automatic OIDC token refresh.
-- 🎛️ **Native Slash Commands:** Full Discord interaction engine with built-in permission checks (`ManageGuild`), interactive feedback, and ephemeral security.
-- 🐳 **Universal Containerization:** Production-ready `Dockerfile` optimized for Vercel Daemons, Railway, Fly.io, VPS, or self-hosted Docker environments.
-- 🛡️ **Defensive Architecture:** Strict environment schema validation, zero crashing on Discord gateway hiccups, and comprehensive unit tests.
+- **Starts from 0h by default:** When the bot is invited, it starts from `0h 00m` and counts up infinitely: `1h`, `50h`, `500h`, `5,000h`, `10,000h+`.
+- **Live Profile Presence:** Automatically renders rich streaming status on the bot's profile:
+  ```text
+  🟣 Streaming: 12h 45m elapsed
+  ```
+- **Persistent State Recovery:** Uptime is computed from reference start timestamps stored in `data/timer-state.json`. Even if the host restarts, the timer **never resets back to 0 or 5000**—it resumes its exact cumulative progress!
+- **Customizable / Reset:** Server administrators can use `/reset [hours]` to reset or initialize the timer to any starting value (e.g. `0`, `100`, `5000`).
 
 ---
 
-## 🏗️ Architecture & Flow
+## ✨ Key Features
+
+- 🟣 **Live Discord Streaming Activity:** Streams to Twitch or YouTube with valid HTTPS verification and clickable profile links.
+- 🎙️ **Persistent 24/7 Voice Channel Connection:** Pinned to your desired voice channel (`/setvoice`), with automated exponential-backoff reconnects on network blips.
+- 🌐 **Built-in HTTP Keep-Alive Server:** Binds to `PORT || 3000` returning `200 OK` JSON telemetry (`uptime`, `timer`, `status`), enabling 24/7 hosting on free cloud platforms (Render, Koyeb, Railway).
+- 💾 **Dual Storage Engine:** Automatically uses atomic local JSON storage or connects to cloud storage.
+- ⚡ **Zero-Lag Architecture:** Minimal CPU and RAM footprint (< 35MB RAM).
+
+---
+
+## 🏗️ Architecture & Keep-Alive Flow
 
 ```mermaid
 flowchart TD
-    subgraph Discord_Platform["Discord Platform"]
-        Gateway["Discord Gateway (v10 API)"]
-        VoiceGW["Discord Voice Gateway (@discordjs/voice)"]
-        SlashCmd["Interaction Slash Commands Engine"]
+    subgraph CloudHost ["24/7 Cloud Host (Render / VPS)"]
+        HTTP["HTTP Keep-Alive Server (:3000)"]
+        Timer["Timer Service (Persistent Timestamp)"]
+        Pres["Presence Manager (Streaming Loop)"]
+        Voice["Voice Manager (@discordjs/voice)"]
     end
 
-    subgraph Daemon["ZYRO Bot Daemon Engine (Node.js 24)"]
-        Core["Core Process / Worker (src/index.js)"]
-        VoiceMgr["Voice Manager & Connection Guard"]
-        PresenceMgr["Dynamic Presence & Stream Sync"]
-        TimerSvc["Continuous Uptime Tracker (5,000h+)"]
+    subgraph ExternalServices ["External Monitoring & Discord"]
+        Uptime["UptimeRobot / Cron (Every 5 mins)"]
+        Gateway["Discord Gateway v10"]
+        VoiceGW["Discord Voice Server (WebSockets & UDP)"]
     end
 
-    subgraph Storage["Persistence Layer"]
-        LocalFile["Local Filesystem Cache (./data)"]
-        VercelBlob["Vercel Private Blob (OIDC Authenticated)"]
-    end
-
-    SlashCmd --> Core
-    Gateway <--> Core
-    VoiceMgr <--> VoiceGW
-    Core --> VoiceMgr
-    Core --> PresenceMgr
-    Core --> TimerSvc
-    TimerSvc <--> VercelBlob
-    TimerSvc <--> LocalFile
+    Uptime -->|GET / -> 200 OK Status| HTTP
+    Timer -->|Computes Cumulative Hours (0h+)| Pres
+    Pres -->|Activity: Streaming (Twitch/YouTube)| Gateway
+    Voice -->|Voice Channel Lock & Reconnect| VoiceGW
 ```
 
 ---
 
-## 🎛️ Slash Commands Suite
+## ☁️ 24/7 Render Free Cloud Hosting (Step-by-Step)
 
-All commands are registered natively through the Discord REST API with granular permissions:
+Follow these simple steps to keep the bot running **24/7 for free without stopping**:
 
-| Command | Arguments | Permissions | Description |
-| :--- | :--- | :---: | :--- |
-| **`/setvoice`** | `channel` *(Guild Voice)* | `ManageGuild` | Selects and pins the voice channel the bot must occupy 24/7. |
-| **`/setstream`**| `url` *(Twitch/YouTube HTTPS)* | `ManageGuild` | Updates the global streaming activity URL displayed on the bot's profile. |
-| **`/status`**   | *None* | `Everyone` | Displays real-time voice gateway connection state, ping, and guild health. |
-| **`/timer`**    | *None* | `Everyone` | Inspects the continuous streaming timer and total accumulated operating hours. |
-| **`/reset`**    | `hours` *(Min 5,000)* | `ManageGuild` | Recalibrates or resets the global milestone streaming timer. |
+### Step 1: Push / Fork Repository
+Make sure this repository is on your GitHub account.
+
+### Step 2: Create a Web Service on Render
+1. Go to [Render Dashboard](https://dashboard.render.com/) and click **New +** → **Web Service**.
+2. Connect your `Streaming-bot-discord` repository.
+3. Configure the settings:
+   - **Name:** `zyro-streaming-bot` (or your preferred name)
+   - **Region:** Any (e.g. Oregon, Frankfurt, Singapore)
+   - **Branch:** `main`
+   - **Root Directory:** *(Leave blank)*
+   - **Runtime:** `Node`
+   - **Build Command:** `npm install`
+   - **Start Command:** `npm start`
+   - **Instance Type:** `Free`
+
+### Step 3: Add Environment Variables
+Under **Environment Variables**, click **Add Environment Variable**:
+
+| Variable | Value | Description |
+| :--- | :--- | :--- |
+| `BOT_TOKEN` | `your_bot_token_here` | Discord Bot Token from Developer Portal |
+| `DEFAULT_STREAM_URL` | `https://www.twitch.tv/example` | Stream link displayed on profile |
+| `BASE_ELAPSED_HOURS` | `0` | Starting hours (default: `0` for unlimited progress) |
+| `PORT` | `3000` | HTTP port for Render health check |
+
+Click **Create Web Service**.
+
+### Step 4: Keep It Alive 24/7 (Prevent Render Sleeping)
+Render free Web Services sleep after 15 minutes of inactivity. Because our bot includes a built-in HTTP server, we can keep it awake 24/7 using [UptimeRobot](https://uptimerobot.com):
+
+1. Once Render finishes deploying, copy your service URL (e.g., `https://zyro-streaming-bot.onrender.com`).
+2. Open [UptimeRobot](https://uptimerobot.com) and create a free account.
+3. Click **Add New Monitor**:
+   - **Monitor Type:** `HTTP(s)`
+   - **Friendly Name:** `Discord Streaming Bot`
+   - **URL (or IP):** `https://zyro-streaming-bot.onrender.com`
+   - **Monitoring Interval:** `Every 5 minutes`
+4. Click **Create Monitor**.
+
+✅ **Done!** UptimeRobot will ping the bot every 5 minutes, returning `200 OK` and preventing Render from ever sleeping. The bot will run **24/7 non-stop**!
 
 ---
 
-## ⚙️ Environment Variables
+## 🚀 Local & VPS Deployment
 
-Configure these variables in your deployment dashboard or local `.env` file:
-
-| Variable | Required | Default | Description |
-| :--- | :---: | :---: | :--- |
-| `BOT_TOKEN` | **Yes** | — | Secret Discord Bot Token from the Discord Developer Portal. |
-| `DEFAULT_STREAM_URL` | Optional | `""` | Fallback Twitch or YouTube HTTPS streaming link. |
-| `BASE_ELAPSED_HOURS` | Optional | `5000` | Minimum base starting hours for the uptime counter. |
-| `DATA_DIR` | Optional | `./data` | Local directory for cached state persistence. |
-| `PRESENCE_UPDATE_INTERVAL_MS`| Optional | `60000` | Presence heartbeat update interval in milliseconds (min `60000`). |
-| `VOICE_RECONNECT_DELAY_MS` | Optional | `5000` | Initial voice reconnection delay on disconnect (ms). |
-| `VOICE_RECONNECT_MAX_DELAY_MS` | Optional | `60000` | Maximum exponential backoff ceiling for voice reconnection. |
-| `DEV_GUILD_ID` | Optional | — | Target Guild ID for immediate slash command deployment during development. |
-
----
-
-## 🚀 Deployment Guide
-
-### Option 1: Deploy on Vercel (Vercel Daemons)
-
-1. **Import Repository:** Go to [Vercel Dashboard](https://vercel.com/dashboard) → **Add New** → **Project**, and import this repository.
-2. **Root Directory:** Keep the root directory set to the repository root.
-3. **Set Up Storage:**
-   - Under the project's **Storage** tab, create a new **Vercel Blob** store.
-   - Set Access Type to **Private**.
-   - Connect the Blob store to your Project (Production environment).
-4. **Environment Variables:**
-   - Under **Project Settings → Environment Variables**, add your `BOT_TOKEN` and desired configuration.
-5. **Deploy:** Trigger a deployment. Monitor logs under **Deployments → Production → Logs / Daemons → `zyro-bot`**.
-
-> [!NOTE]
-> Vercel Daemons require a Production deployment to initialize active compute instances.
-
-### Option 2: Run with Docker
-
+### Local Quick Start
 ```bash
-# Navigate to the worker directory
-cd zyro-vercel-daemon/zyro-vercel-daemon/worker
+# 1. Clone repository
+git clone https://github.com/thenudasahas2008/Streaming-bot-discord.git
+cd Streaming-bot-discord
 
-# Build the production container
-docker build -t zyro-streaming-bot .
-
-# Run container with persistent data volume
-docker run -d \
-  --name zyro-bot \
-  --restart always \
-  -e BOT_TOKEN="your_discord_bot_token" \
-  -e DEFAULT_STREAM_URL="https://twitch.tv/your_channel" \
-  -v $(pwd)/data:/app/data \
-  zyro-streaming-bot
-```
-
-### Option 3: Local Development & Verification
-
-```bash
-cd zyro-vercel-daemon/zyro-vercel-daemon/worker
-
-# Install dependencies
+# 2. Install dependencies
 npm install
 
-# Run static syntax & consistency checks
-npm run check
+# 3. Create .env file
+cp .env.example .env
+# Fill in BOT_TOKEN in .env
 
-# Run automated unit test suite
-npm test
-
-# Start bot process
+# 4. Start the bot
 npm start
 ```
 
+### VPS Deployment (Ubuntu / Debian with PM2)
+```bash
+npm install -g pm2
+pm2 start src/index.js --name "streaming-bot"
+pm2 startup
+pm2 save
+```
+
 ---
 
-## 🔒 Discord Bot Privileged Intents
+## 🎮 Slash Commands
 
-To ensure proper gateway handshakes and voice packet routing, verify the following in the [Discord Developer Portal](https://discord.com/developers/applications):
+| Command | Arguments | Permission | Description |
+| :--- | :--- | :--- | :--- |
+| **`/setvoice`** | `channel` *(Voice)* | `ManageGuild` | Selects and locks the voice channel for the bot to stay in 24/7. |
+| **`/setstream`** | `url` *(Twitch/YouTube)* | `ManageGuild` | Updates the global streaming profile link. |
+| **`/timer`** | *None* | Everyone | Displays the exact live progressive streaming elapsed time. |
+| **`/status`** | *None* | Everyone | Displays current voice connectivity, server stats, and ping. |
+| **`/reset`** | `hours` *(Optional)* | `ManageGuild` | Resets or sets the cumulative timer (min: `0`, default: `0`). |
 
-1. **OAuth2 URL Generator Scopes:**
-   - `bot`
-   - `applications.commands`
+---
+
+## ⚙️ Configuration Reference
+
+| Variable | Required | Default | Description |
+| :--- | :---: | :---: | :--- |
+| `BOT_TOKEN` | **Yes** | — | Discord Bot Token from Discord Developer Portal. |
+| `DEFAULT_STREAM_URL` | Optional | `""` | Fallback Twitch or YouTube live stream link. |
+| `BASE_ELAPSED_HOURS` | Optional | `0` | Starting hours for the timer (default: `0` for fresh start). |
+| `PORT` | Optional | `3000` | HTTP port for Render / UptimeRobot health check. |
+| `DATA_DIR` | Optional | `./data` | Directory for persistent timer and settings storage. |
+| `PRESENCE_UPDATE_INTERVAL_MS`| Optional | `60000` | Frequency of presence activity updates (ms). |
+
+---
+
+## 🔒 Discord Developer Portal Checklist
+
+Ensure the following are enabled at [discord.com/developers/applications](https://discord.com/developers/applications):
+
+1. **Privileged Gateway Intents:**
+   - Server Members Intent
+   - Voice State & Guild Intents
 2. **Bot Permissions:**
    - `View Channels`
    - `Connect`
    - `Speak`
-   - `Use Embedded Activities` (Optional)
-
----
-
-## 🇱🇰 සිංහල මාර්ගෝපදේශය (Sinhala Guide)
-
-සම්පූර්ණ project setup එක, Vercel Hobby plan එකේ සීමාවන් සහ Blob storage සම්බන්ධ කරන ආකාරය පිළිබඳ සිංහල මාර්ගෝපදේශය සඳහා **[README_SI.md කියවන්න](zyro-vercel-daemon/zyro-vercel-daemon/README_SI.md)**.
+   - `Use Embedded Activities`
+   - `Send Messages`
+   - `Use Slash Commands`
 
 ---
 
 ## 👨‍💻 Author & Maintainer
 
-**Thenuda Sahas Sooriyaarachchi**
-- 🌐 Portfolio: [thenudasahas.site](https://www.thenudasahas.site/)
-- 🐙 GitHub: [@thenudasahas2008](https://github.com/thenudasahas2008)
-- 💬 Discord: `zyrox_01xi`
-
----
-
 <div align="center">
-  <sub>Built with ❤️ for 24/7 Discord Audio Streaming. Licensed under the MIT License.</sub>
+
+**Thenuda Sahas Sooriyaarachchi**  
+*Cybersecurity Researcher • DFIR Analyst • Ethical Developer*
+
+[![Email](https://img.shields.io/badge/Email-sahas.thenu%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sahas.thenu@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-thenudasahas2008-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/thenudasahas2008)
+[![Website](https://img.shields.io/badge/Website-thenudasahas.site-00C7B7?style=for-the-badge&logo=google-chrome&logoColor=white)](https://thenudasahas.site/)
+[![Discord](https://img.shields.io/badge/Discord-ZYROX__01XI-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com)
+
+<p align="center">
+  <sub>⭐ If you find this 24/7 streaming bot useful, don't forget to star the repository! ⭐</sub>
+</p>
+
 </div>

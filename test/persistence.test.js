@@ -9,6 +9,26 @@ const { JsonStore } = require('../src/storage');
 const { TimerService } = require('../src/services/timer-service');
 const { SettingsService } = require('../src/services/settings-service');
 
+test('timer can start from 0 and reset to 0 hours', async () => {
+    const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'zyro-timer-zero-'));
+    const filePath = path.join(directory, 'timer.json');
+
+    try {
+        const store = new JsonStore();
+        const timer = new TimerService({ store, filePath, initialHours: 0 });
+        await timer.initialize();
+        assert.equal(timer.getElapsed().hours, 0);
+
+        await timer.reset(0);
+        assert.equal(timer.getElapsed().hours, 0);
+
+        await timer.reset(12);
+        assert.equal(timer.getElapsed().hours, 12);
+    } finally {
+        await fs.rm(directory, { recursive: true, force: true });
+    }
+});
+
 test('timer state survives a service restart', async () => {
     const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'zyro-timer-'));
     const filePath = path.join(directory, 'timer.json');

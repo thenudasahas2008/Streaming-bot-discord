@@ -1,5 +1,6 @@
 'use strict';
 
+const http = require('node:http');
 const {
     Client,
     GatewayIntentBits,
@@ -247,7 +248,7 @@ async function executeCommand(interaction) {
             }
 
             case 'reset': {
-                const hours = interaction.options.getInteger('hours') ?? 5000;
+                const hours = interaction.options.getInteger('hours') ?? 0;
                 const elapsed = await timerService.reset(hours);
                 presenceManager.update();
 
@@ -328,11 +329,39 @@ async function shutdown(signal) {
         });
     }
 
+    server.close();
     client.destroy();
 }
 
 process.once('SIGINT', () => shutdown('SIGINT'));
 process.once('SIGTERM', () => shutdown('SIGTERM'));
+
+const PORT = process.env.PORT || 3000;
+const server = http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    let timerInfo = 'initializing';
+    try {
+        if (timerService.initialized) {
+            timerInfo = timerService.getElapsed();
+        }
+    } catch {}
+
+    const payload = {
+        status: 'online',
+        service: 'ZYRO 24/7 Discord Streaming Bot',
+        bot: client.user?.tag || 'connecting',
+        timer: timerInfo?.formatted || timerInfo,
+        detailed_timer: timerInfo?.detailed || '0h 00m 00s',
+        uptime_seconds: Math.floor(process.uptime()),
+        timestamp: new Date().toISOString()
+    };
+
+    res.end(JSON.stringify(payload, null, 2));
+});
+
+server.listen(PORT, () => {
+    logger.info(`[HTTP SERVER] Health check listening on port ${PORT} (Render 24/7 Ready)`);
+});
 
 client.login(CONFIG.token).catch(error => {
     logger.error('Discord login failed:', error.message);

@@ -3,7 +3,7 @@
 const { getElapsed, startedAtForHours } = require('../lib/time');
 
 class TimerService {
-    constructor({ store, filePath, initialHours = 5000 }) {
+    constructor({ store, filePath, initialHours = 0 }) {
         this.store = store;
         this.filePath = filePath;
         this.initialHours = initialHours;
@@ -38,8 +38,8 @@ class TimerService {
     }
 
     async reset(hours = this.initialHours) {
-        if (!Number.isFinite(hours) || hours < 5000 || hours > 10_000_000) {
-            throw new RangeError('Timer hours must be between 5,000 and 10,000,000.');
+        if (!Number.isFinite(hours) || hours < 0 || hours > 10_000_000) {
+            throw new RangeError('Timer hours must be between 0 and 10,000,000.');
         }
 
         const previous = this.startedAt;
