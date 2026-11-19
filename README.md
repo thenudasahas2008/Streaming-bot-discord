@@ -13,7 +13,7 @@
   <b>A resilient 24/7 Discord Streaming Presence and Persistent Voice Channel bot designed for non-stop uptime. Displays live progressive streaming timers starting from 0h and counting up infinitely with built-in Render HTTP health checks.</b>
 </p>
 
-[✨ Sinhala Guide (සිංහල මාර්ගෝපදේශය)](README_SI.md) • [Features](#-key-features) • [Unlimited Timer](#-unlimited-streaming-timer) • [Render 24/7 Hosting](#-247-render-free-cloud-hosting) • [Quick Start](#-quick-start) • [Commands](#-slash-commands)
+[Features](#-key-features) • [Unlimited Timer](#-unlimited-streaming-timer) • [Render 24/7 Hosting](#-247-render-free-cloud-hosting) • [Quick Start](#-quick-start) • [Commands](#-slash-commands)
 
 ---
 

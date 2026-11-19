@@ -27,8 +27,8 @@ class JsonStore {
                 (!hasOidcTokenFile && !hasReadWriteToken)
             ) {
                 throw new Error(
-                    'Vercel Daemon එකට private Blob storage connect කරලා නැහැ. ' +
-                    'Vercel Dashboard → Storage → Blob Store → Connect to Project කරන්න.'
+                    'Vercel private Blob storage is not connected to this daemon. ' +
+                    'In Vercel Dashboard, go to Storage → Blob Store → Connect to Project.'
                 );
             }
 

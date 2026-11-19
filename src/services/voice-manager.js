@@ -58,14 +58,14 @@ class VoiceManager {
         const channelId = guildSettings?.voiceChannelId;
 
         if (!channelId) {
-            throw new Error('මෙම server එකට Voice Channel එකක් තෝරා නැහැ. /setvoice භාවිතා කරන්න.');
+            throw new Error('No voice channel configured for this server. Use /setvoice to configure one.');
         }
 
         const guild = await this.client.guilds.fetch(guildId);
         const channel = await guild.channels.fetch(channelId);
 
         if (!channel || channel.type !== ChannelType.GuildVoice) {
-            throw new Error('Save කරලා තියෙන Voice Channel එක හමු වුණේ නැහැ. /setvoice නැවත භාවිතා කරන්න.');
+            throw new Error('Configured voice channel not found. Please reconfigure with /setvoice.');
         }
 
         const botMember = guild.members.me || await guild.members.fetchMe();
@@ -75,7 +75,7 @@ class VoiceManager {
             !permissions?.has(PermissionFlagsBits.ViewChannel) ||
             !permissions?.has(PermissionFlagsBits.Connect)
         ) {
-            throw new Error('Botට මේ Voice Channel එකට View Channel සහ Connect permissions දෙන්න.');
+            throw new Error('Bot requires View Channel and Connect permissions in this voice channel.');
         }
 
         let connection = this.getConnection(guildId);

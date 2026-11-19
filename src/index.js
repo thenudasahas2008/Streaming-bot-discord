@@ -28,7 +28,7 @@ const logger = {
 };
 
 if (!CONFIG.token || CONFIG.token === 'PASTE_YOUR_BOT_TOKEN_HERE') {
-    throw new Error('BOT_TOKEN එක .env file එකේ සකසන්න.');
+    throw new Error('Please configure BOT_TOKEN in your environment variables or .env file.');
 }
 
 const client = new Client({
@@ -99,12 +99,12 @@ function createStatusEmbed(interaction) {
                 name: 'Pinned Channel',
                 value: voice.targetChannelId
                     ? `<#${voice.targetChannelId}>`
-                    : 'තෝරා නැහැ — `/setvoice`',
+                    : 'Not configured — Use /setvoice',
                 inline: true
             },
             {
                 name: 'Streaming URL',
-                value: streamUrl ? `[Configured](${streamUrl})` : 'සකසා නැහැ — `/setstream`',
+                value: streamUrl ? [Configured]() : 'Not configured — Use /setstream',
                 inline: false
             },
             {
@@ -113,7 +113,7 @@ function createStatusEmbed(interaction) {
                 inline: true
             }
         )
-        .setFooter({ text: 'Timer එක restart වුණත් data folder එක පවතින තාක් දිගටම ගණනය වේ.' })
+        .setFooter({ text: 'Streaming timer increments continuously across restarts.' })
         .setTimestamp();
 
     return embed;
@@ -170,7 +170,7 @@ async function executeCommand(interaction) {
 
     if (['setvoice', 'status'].includes(commandName) && !interaction.inGuild()) {
         await interaction.reply({
-            content: 'මේ command එක Discord server එකක් ඇතුළේ භාවිතා කරන්න.',
+            content: 'This command can only be used inside a Discord server (guild).',
             flags: MessageFlags.Ephemeral
         });
         return;
@@ -178,7 +178,7 @@ async function executeCommand(interaction) {
 
     if (isAdminCommand && !interaction.memberPermissions?.has(PermissionFlagsBits.ManageGuild)) {
         await interaction.reply({
-            content: 'මේ command එක භාවිතා කරන්න **Manage Server** permission එක අවශ්‍යයි.',
+            content: 'You need the **Manage Server** permission to execute this command.',
             flags: MessageFlags.Ephemeral
         });
         return;
@@ -196,7 +196,7 @@ async function executeCommand(interaction) {
                 if (!permissions?.has(PermissionFlagsBits.ViewChannel) ||
                     !permissions?.has(PermissionFlagsBits.Connect)) {
                     await interaction.editReply(
-                        'Botට මේ channel එකට **View Channel** සහ **Connect** permissions දෙන්න.'
+                        'Please grant the bot **View Channel** and **Connect** permissions in this channel.'
                     );
                     return;
                 }
@@ -206,11 +206,12 @@ async function executeCommand(interaction) {
                 try {
                     await voiceManager.connectGuild(interaction.guildId);
                     await interaction.editReply(
-                        `✅ Bot එක <#${channel.id}> channel එකට සම්බන්ධ වුණා. Restart වුණත් මේ channel එක save වෙලා තියෙනවා.`
+                        `✅ Bot connected to <#>. Target voice channel saved and will auto-reconnect on restart.`
                     );
                 } catch (error) {
                     await interaction.editReply(
-                        `Channel එක save කළා, නමුත් දැන් connect වෙන්න බැරි වුණා. Auto reconnect උත්සාහ කරනවා.\n**හේතුව:** ${error.message}`
+                        `Channel saved, but failed to connect immediately. Automatic reconnection will retry.
+**Reason:** `
                     );
                 }
                 return;
@@ -229,7 +230,10 @@ async function executeCommand(interaction) {
                 presenceManager.update();
 
                 await interaction.editReply(
-                    `✅ Streaming presence link එක update කළා.\n${validation.url}\n\nමේක bot account එකේ global presence එක නිසා සියලු servers වලට බලපානවා.`
+                    `✅ Streaming presence URL updated successfully.
+
+
+This applies globally to the bot presence across all servers.`
                 );
                 return;
             }
@@ -237,7 +241,10 @@ async function executeCommand(interaction) {
             case 'timer': {
                 const elapsed = timerService.getElapsed();
                 await interaction.editReply(
-                    `⏱️ **${elapsed.formatted}**\nSeconds: ${elapsed.seconds.toString().padStart(2, '0')}\n\nBot restart වුණත් timer එක ඉදිරියට ගණනය වෙනවා.`
+                    `⏱️ ****
+Seconds: 
+
+Timer increments continuously even across bot restarts.`
                 );
                 return;
             }
@@ -253,17 +260,18 @@ async function executeCommand(interaction) {
                 presenceManager.update();
 
                 await interaction.editReply(
-                    `✅ Global timer එක **${elapsed.formatted}** සිට නැවත පටන් ගත්තා.\nමෙය bot එක භාවිතා කරන සියලු servers වල timer එකට බලපානවා.`
+                    `✅ Global streaming timer re-initialized from ****.
+This applies globally to the bot presence across all servers.`
                 );
                 return;
             }
 
             default:
-                await interaction.editReply('මේ command එක හඳුනාගන්න බැහැ.');
+                await interaction.editReply('Unrecognized slash command.');
         }
     } catch (error) {
         logger.error(`Command /${commandName} failed:`, error);
-        const message = `❌ Command එක ක්‍රියාත්මක වුණේ නැහැ: ${error.message}`;
+        const message = ❌ Failed to execute command: ;
 
         if (interaction.deferred || interaction.replied) {
             await interaction.editReply(message).catch(() => {});

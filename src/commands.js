@@ -9,39 +9,39 @@ const {
 const commands = [
     new SlashCommandBuilder()
         .setName('setvoice')
-        .setDescription('Bot එකට රැඳී සිටිය යුතු Voice Channel එක තෝරන්න.')
+        .setDescription('Select the target voice channel for the bot to join and stay 24/7.')
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
         .addChannelOption(option => option
             .setName('channel')
-            .setDescription('Bot එකට සම්බන්ධ විය යුතු Voice Channel එක.')
+            .setDescription('The voice channel for the bot to connect to.')
             .addChannelTypes(ChannelType.GuildVoice)
             .setRequired(true)),
 
     new SlashCommandBuilder()
         .setName('setstream')
-        .setDescription('Bot profile එකේ Streaming link එක සකසන්න (සියලු servers සඳහා).')
+        .setDescription('Set the streaming presence URL on the bot profile (global across all servers).')
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
         .addStringOption(option => option
             .setName('url')
-            .setDescription('Twitch හෝ YouTube HTTPS link එක.')
+            .setDescription('A valid Twitch or YouTube HTTPS streaming link.')
             .setMaxLength(200)
             .setRequired(true)),
 
     new SlashCommandBuilder()
         .setName('timer')
-        .setDescription('Bot එකේ 24/7 live streaming timer එක බලන්න.'),
+        .setDescription('Display the bot 24/7 live streaming timer and connection telemetry.'),
 
     new SlashCommandBuilder()
         .setName('status')
-        .setDescription('මේ server එකේ voice connection සහ bot status බලන්න.'),
+        .setDescription('Check voice connection and bot status in this server.'),
 
     new SlashCommandBuilder()
         .setName('reset')
-        .setDescription('Global streaming timer එක අලුත් අගයකින් නැවත පටන් ගන්න.')
+        .setDescription('Reset or reseed the global streaming timer with a new start hour.')
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
         .addIntegerOption(option => option
             .setName('hours')
-            .setDescription('අලුත් ආරම්භක පැය ගණන (Default: 0).')
+            .setDescription('New starting hour offset (Default: 0).')
             .setMinValue(0)
             .setMaxValue(10_000_000)
             .setRequired(false))
