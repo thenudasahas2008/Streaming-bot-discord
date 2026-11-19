@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&height=220&section=header&text=ZYRO%20STREAMING%20BOT&fontSize=42&fontColor=E6FCFF&fontAlignY=38&desc=24/7%20CONTINUOUS%20STREAMING%20PRESENCE%20%E2%80%A2%20VOICE%20STATION%20DAEMON&descSize=13&descAlignY=60&color=0:020617,35:0F172A,70:0284C7,100:22D3EE" width="100%" alt="ZYRO Streaming Bot Banner" />
+<img src="assets/header.svg" width="100%" alt="ZYRO Streaming Bot Banner" />
 
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18.0.0-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 [![Discord.js](https://img.shields.io/badge/discord.js-v14.27.0-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.js.org/)
